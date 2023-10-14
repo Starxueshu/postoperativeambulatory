@@ -11,7 +11,7 @@ import shap
 #import matplotlib.pyplot as plt
 #from PIL import Image
 
-st.header("An AI Model for Predicting Postoperative In-Hospital Mortality in Geriatric Hip Fracture Patients")
+st.header("Establishment and validation of an interactive artificial intelligence platform to predict postoperative ambulatory status in patients with metastatic spinal disease")
 st.sidebar.title("Parameters Selection Panel")
 st.sidebar.markdown("Picking up parameters")
 Age = st.sidebar.slider("Age", 40, 80)
@@ -43,10 +43,6 @@ if st.button("Submit"):
         st.success(f"Risk group: low-risk group")
     else:
         st.success(f"Risk group: High-risk group")
-    if prediction < 0.550:
-        st.markdown(f"Management Measures for Low-risk Population: Geriatric hip fracture patients identified as low-risk for postoperative in-hospital mortality also require comprehensive postoperative management. Standard care protocols such as pain management, wound care, and mobilization should be followed consistently. Early mobilization protocols and physical therapy should be integrated into their care plan to facilitate optimal recovery and functional outcomes. Adequate nutrition support, psychological support, and regular follow-up appointments are important for healing and well-being. Patient education and engagement in the care plan ensure a clear understanding of postoperative instructions and adherence to medication regimens, contributing to a smooth transition to a home setting.")
-    else:
-        st.markdown(f"Management Measures for High-risk Population: For geriatric hip fracture patients identified as high-risk for postoperative in-hospital mortality, a proactive and individualized management approach is essential. Close monitoring of vital signs and regular pain assessment should be implemented to promptly identify any signs of deterioration. Early intervention by a multidisciplinary team, comprehensive medication management, and optimization are crucial to address potential complications and minimize adverse drug events. Specialized rehabilitation programs tailored to their specific needs and comorbidities can optimize functional recovery. Postoperative infection prevention strategies and regular communication among healthcare providers ensure seamless coordination and continuity of care.")
 
     st.subheader('Model explanation: contribution of each model predictor')
     star = pd.read_csv('X_train.csv', low_memory=False)
@@ -66,7 +62,10 @@ if st.button("Submit"):
     st.pyplot(bbox_inches='tight')
     st.set_option('deprecation.showPyplotGlobalUse', False)
 
-
+    if prediction < 0.550:
+        st.markdown(f"Recommended Management Measures for the Low-risk Population: For the low-risk group, a more conservative approach may be taken. Resources can be allocated more efficiently, with interventions focused on minimizing complications. This group may require less intensive rehabilitation and follow-up, allowing resources to be redirected to patients who are in greater need.")
+    else:
+        st.markdown(f"Recommended Management Measures for the High-risk Population: For the high-risk group, it may be necessary to adopt aggressive interventions and closely monitor their progress. This may involve more extensive removal of metastatic tumors, early initiation of physical therapy, use of assistive devices, implementation of intensive rehabilitation programs, and proactive management of pain and complications. Additionally, frequent follow-up visits and regular assessments can help identify any deterioration in ambulatory status and allow for timely intervention.")
 
 st.subheader('Model information')
 st.markdown('The AI prediction model, developed using the eXGBoosting Machine (eXGBM) algorithm, demonstrated outstanding performance in predicting postoperative in-hospital mortality in geriatric hip fracture patients. It exhibited the highest scores in various evaluation metrics, including accuracy, precision, specificity, F1 score, Brier score, and log loss. With an AUC of 0.908, the model showcased excellent discrimination ability. Additionally, the model showed favorable calibration, indicating its accuracy in estimating risk levels. The comprehensive scoring system ranked the eXGBM model as the top-performing model, further validating its predictive capability. This AI model is freely accessible for research purposes, providing a valuable tool for enhancing clinical decision-making in managing geriatric hip fracture patients’ in-hospital mortality risk.')
