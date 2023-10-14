@@ -44,7 +44,7 @@ if st.button("Submit"):
     else:
         st.success(f"Risk group: High-risk group")
 
-    st.subheader('Model explanation: contribution of each model predictor')
+    st.subheader('Model explanation: contribution of each feature')
     star = pd.read_csv('X_train.csv', low_memory=False)
     y_train0 = pd.read_csv('y_train.csv', low_memory=False)
     data_train_X = star.loc[:, ["Age", "Numberofcommorbidity", "ECOG", "Surgicalsite3fj", "Albumin", "TCHO", "PT", "Bilskyscore", "Preoperativeambulatory"]]
@@ -63,9 +63,11 @@ if st.button("Submit"):
     st.set_option('deprecation.showPyplotGlobalUse', False)
 
     if prediction < 0.381:
-        st.markdown(f"Recommended Management Measures for the Low-risk Population: For the low-risk group, a more conservative approach may be taken. Resources can be allocated more efficiently, with interventions focused on minimizing complications. This group may require less intensive rehabilitation and follow-up, allowing resources to be redirected to patients who are in greater need.")
+        st.success(f"Recommended Management Measures for the Low-risk Population: ")
+        st.markdown(f"For the low-risk group, a more conservative approach may be taken. Resources can be allocated more efficiently, with interventions focused on minimizing complications. This group may require less intensive rehabilitation and follow-up, allowing resources to be redirected to patients who are in greater need.")
     else:
-        st.markdown(f"Recommended Management Measures for the High-risk Population: For the high-risk group, it may be necessary to adopt aggressive interventions and closely monitor their progress. This may involve more extensive removal of metastatic tumors, early initiation of physical therapy, use of assistive devices, implementation of intensive rehabilitation programs, and proactive management of pain and complications. Additionally, frequent follow-up visits and regular assessments can help identify any deterioration in ambulatory status and allow for timely intervention.")
+        st.success(f"Recommended Management Measures for the High-risk Population: ")
+        st.markdown(f"For the high-risk group, it may be necessary to adopt aggressive interventions and closely monitor their progress. This may involve more extensive removal of metastatic tumors, early initiation of physical therapy, use of assistive devices, implementation of intensive rehabilitation programs, and proactive management of pain and complications. Additionally, frequent follow-up visits and regular assessments can help identify any deterioration in ambulatory status and allow for timely intervention.")
 
 st.subheader('Model information')
 st.markdown('The AI prediction model, developed using the eXGBoosting Machine (eXGBM) algorithm, demonstrated outstanding performance in predicting postoperative in-hospital mortality in geriatric hip fracture patients. It exhibited the highest scores in various evaluation metrics, including accuracy, precision, specificity, F1 score, Brier score, and log loss. With an AUC of 0.908, the model showcased excellent discrimination ability. Additionally, the model showed favorable calibration, indicating its accuracy in estimating risk levels. The comprehensive scoring system ranked the eXGBM model as the top-performing model, further validating its predictive capability. This AI model is freely accessible for research purposes, providing a valuable tool for enhancing clinical decision-making in managing geriatric hip fracture patients’ in-hospital mortality risk.')
