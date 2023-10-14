@@ -39,7 +39,7 @@ if st.button("Submit"):
     prediction = rf_clf.predict_proba(x)[0, 1]
         # Output prediction
     st.success(f"Probability of inability to walk after surgery: {'{:.2%}'.format(round(prediction, 5))}")
-    if prediction < 0.550:
+    if prediction < 0.381:
         st.success(f"Risk group: low-risk group")
     else:
         st.success(f"Risk group: High-risk group")
@@ -62,7 +62,7 @@ if st.button("Submit"):
     st.pyplot(bbox_inches='tight')
     st.set_option('deprecation.showPyplotGlobalUse', False)
 
-    if prediction < 0.550:
+    if prediction < 0.381:
         st.markdown(f"Recommended Management Measures for the Low-risk Population: For the low-risk group, a more conservative approach may be taken. Resources can be allocated more efficiently, with interventions focused on minimizing complications. This group may require less intensive rehabilitation and follow-up, allowing resources to be redirected to patients who are in greater need.")
     else:
         st.markdown(f"Recommended Management Measures for the High-risk Population: For the high-risk group, it may be necessary to adopt aggressive interventions and closely monitor their progress. This may involve more extensive removal of metastatic tumors, early initiation of physical therapy, use of assistive devices, implementation of intensive rehabilitation programs, and proactive management of pain and complications. Additionally, frequent follow-up visits and regular assessments can help identify any deterioration in ambulatory status and allow for timely intervention.")
