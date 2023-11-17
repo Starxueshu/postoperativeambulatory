@@ -47,7 +47,7 @@ if st.button("Submit"):
     st.subheader('Model explanation: contribution of each feature')
     star = pd.read_csv('X_train.csv', low_memory=False)
     y_train0 = pd.read_csv('y_train.csv', low_memory=False)
-    data_train_X = star.loc[:, ["Age", "Numberofcommorbidity", "ECOG", "Surgicalsite3fj", "Albumin", "TCHO", "PT", "Bilskyscore", "Preoperativeambulatory"]]
+    data_train_X = star.loc[:, ["Age", "ECOG", "Surgicalsite3fj", "Albumin", "TCHO", "PT", "Bilskyscore", "Preoperativeambulatory"]]
     y_train = y_train0.Postoperativeambulatory
     model = rf_clf.fit(data_train_X, y_train)
     explainer = shap.Explainer(model)
@@ -70,4 +70,4 @@ if st.button("Submit"):
         st.markdown(f"For the high-risk group, it may be necessary to adopt aggressive interventions and closely monitor their progress. This may involve more extensive removal of metastatic tumors, early initiation of physical therapy, use of assistive devices, implementation of intensive rehabilitation programs, and proactive management of pain and complications. Additionally, frequent follow-up visits and regular assessments can help identify any deterioration in ambulatory status and allow for timely intervention.")
 
 st.subheader('Model information')
-st.markdown('To develop the human-machine interactive AI platform, we employed the extreme gradient boosting machine, which yielded an impressive area under the curve value of 0.911 (95%CI: 0.881-0.936). This freely accessible platform serves as a valuable tool for enhancing clinical decision-making in patients with metastatic spinal disease. However, it is important to note that clinical decision-making should not solely rely on the AI platform but should also incorporate the expertise of healthcare providers and take into account individual patient context.')
+st.markdown('To develop the human-machine interactive AI platform, we employed the machine learning-based model, which yielded excellent prediction performance. This freely accessible platform serves as a valuable tool for enhancing clinical decision-making in patients with metastatic spinal disease. However, it is important to note that clinical decision-making should not solely rely on the AI platform but should also incorporate the expertise of healthcare providers and take into account individual patient context.')
