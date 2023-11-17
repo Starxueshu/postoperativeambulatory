@@ -15,7 +15,7 @@ st.header("Establishment and validation of an interactive artificial intelligenc
 st.sidebar.title("Parameters Selection Panel")
 st.sidebar.markdown("Picking up parameters")
 Age = st.sidebar.slider("Age", 40, 80)
-Numberofcommorbidity = st.sidebar.selectbox("Number of comorbidities", ("None", "Only one", "Two or above"))
+#Numberofcommorbidity = st.sidebar.selectbox("Number of comorbidities", ("None", "Only one", "Two or above"))
 ECOG = st.sidebar.selectbox("ECOG", ("1", "2", "3", "4"))
 Surgicalsite3fj = st.sidebar.selectbox("Surgical site", ("Cervical and cervical thoracic", "Thoracic and thoracolumbar", "Lumbar and lumbosacral"))
 Albumin = st.sidebar.slider("Preoperative albumin (g/L)", 30.0, 50.0)
@@ -25,9 +25,9 @@ Bilskyscore = st.sidebar.selectbox("Bilsky score", ("1", "2", "3"))
 Preoperativeambulatory = st.sidebar.selectbox("Preoperative ambulatory status", ("Ability to walk", "Inability to walk"))
 
 if st.button("Submit"):
-    rf_clf = jl.load("Xgbc_clf_final_round.pkl")
-    x = pd.DataFrame([[Numberofcommorbidity, ECOG, Surgicalsite3fj, Bilskyscore, Preoperativeambulatory, Age, Albumin, TCHO, PT]],
-                     columns=['Numberofcommorbidity', 'ECOG', 'Surgicalsite3fj', 'Bilskyscore', 'Preoperativeambulatory', 'Age', 'Albumin', 'TCHO', 'PT'])
+    rf_clf = jl.load("ensemble_clf_final_round-softweight.pkl")
+    x = pd.DataFrame([[ECOG, Surgicalsite3fj, Bilskyscore, Preoperativeambulatory, Age, Albumin, TCHO, PT]],
+                     columns=['ECOG', 'Surgicalsite3fj', 'Bilskyscore', 'Preoperativeambulatory', 'Age', 'Albumin', 'TCHO', 'PT'])
     x = x.replace(["None", "Only one", "Two or above"], [0, 1, 2])
     x = x.replace(["1", "2", "3", "4"], [1, 2, 3, 4])
     x = x.replace(["Cervical and cervical thoracic", "Thoracic and thoracolumbar", "Lumbar and lumbosacral"], [1, 2, 3])
