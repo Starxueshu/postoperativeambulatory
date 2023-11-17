@@ -42,7 +42,7 @@ if st.button("Submit"):
     if prediction < 0.381:
         st.success(f"Risk group: low-risk group")
     else:
-        st.success(f"Risk group: High-risk group")
+        st.error(f"Risk group: High-risk group")
 
     st.subheader('Model explanation: contribution of each feature')
     star = pd.read_csv('X_train.csv', low_memory=False)
