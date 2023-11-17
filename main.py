@@ -25,7 +25,7 @@ Bilskyscore = st.sidebar.selectbox("Bilsky score", ("1", "2", "3"))
 Preoperativeambulatory = st.sidebar.selectbox("Preoperative ambulatory status", ("Ability to walk", "Inability to walk"))
 
 if st.button("Submit"):
-    rf_clf = jl.load("ensemble_clf_final_round-softweight.pkl")
+    rf_clf = jl.load("Xgbc_clf_final_round2.pkl")
     x = pd.DataFrame([[ECOG, Surgicalsite3fj, Bilskyscore, Preoperativeambulatory, Age, Albumin, TCHO, PT]],
                      columns=['ECOG', 'Surgicalsite3fj', 'Bilskyscore', 'Preoperativeambulatory', 'Age', 'Albumin', 'TCHO', 'PT'])
     x = x.replace(["None", "Only one", "Two or above"], [0, 1, 2])
